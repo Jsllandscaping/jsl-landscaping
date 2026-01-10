@@ -172,28 +172,6 @@ export default function App() {
         </div>
       </Section>
 
-      {/* Our Work */}
-      <Section
-        title="Our Work"
-        subtitle="Recent residential landscaping projects including turf, paving, decking, limestone walls and garden renovations."
-      >
-        <div className="gallery">
-          {WORK_IMAGES.map((img) => (
-            <div key={img.src} className="galleryItem">
-              <img
-                src={img.src}
-                alt={img.alt}
-                loading="lazy"
-                className="galleryImg"
-                onError={(e) => {
-                  // Hide missing images so the layout stays clean
-                  (e.currentTarget as HTMLImageElement).style.display = "none";
-                }}
-              />
-            </div>
-          ))}
-        </div>
-      </Section>
 
       {/* Testimonials */}
       <Section title="What Our Clients Say" subtitle="Real reviews from homeowners.">
