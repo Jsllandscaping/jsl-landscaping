@@ -266,3 +266,55 @@ textarea{ resize: vertical; }
   .formRow{ grid-template-columns: 1fr; }
   .headerCtas{ display:none; }
 }
+
+.instaGrid{
+  display:grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 14px;
+}
+
+.instaLink{
+  display:block;
+  text-decoration:none;
+  color: inherit;
+  background:#fff;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  overflow:hidden;
+}
+
+.instaThumb{
+  background: linear-gradient(135deg, #f58529, #dd2a7b, #8134af, #515bd4);
+  height: 130px;
+  position: relative;
+}
+
+.instaBadge{
+  position:absolute;
+  top: 12px;
+  left: 12px;
+  background: rgba(255,255,255,.95);
+  padding: 6px 10px;
+  border-radius: 999px;
+  font-weight: 900;
+  font-size: 12px;
+}
+
+.instaMeta{
+  padding: 12px 14px 14px;
+}
+
+.instaTitle{
+  font-weight: 900;
+  margin-bottom: 4px;
+}
+
+.instaSub{
+  color: var(--muted);
+  font-size: 13px;
+}
+
+@media (max-width: 900px){
+  .instaGrid{ grid-template-columns: 1fr; }
+}
