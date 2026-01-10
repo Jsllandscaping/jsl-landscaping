@@ -37,6 +37,66 @@ const SERVICES = [
   },
 ] as const;
 
+{/* Instagram Embeds */}
+<section className="section">
+  <div className="container">
+    <h2 className="h2 text-center mb-8">Latest from Instagram</h2>
+    <div className="grid2" style={{ gap: "16px" }}>
+      <div className="instaEmbed">
+        <blockquote
+          className="instagram-media"
+          data-instgrm-permalink="https://www.instagram.com/p/DBJMb83ymWT/"
+          data-instgrm-version="14"
+        ></blockquote>
+      </div>
+
+      <div className="instaEmbed">
+        <blockquote
+          className="instagram-media"
+          data-instgrm-permalink="https://www.instagram.com/p/DEHO8ogSQFu/"
+          data-instgrm-version="14"
+        ></blockquote>
+      </div>
+
+      <div className="instaEmbed">
+        <blockquote
+          className="instagram-media"
+          data-instgrm-permalink="https://www.instagram.com/p/DJDsutrSVzj/"
+          data-instgrm-version="14"
+        ></blockquote>
+      </div>
+
+      <div className="instaEmbed">
+        <blockquote
+          className="instagram-media"
+          data-instgrm-permalink="https://www.instagram.com/p/DSwtsuDkwMe/"
+          data-instgrm-version="14"
+        ></blockquote>
+      </div>
+
+      <div className="instaEmbed">
+        <blockquote
+          className="instagram-media"
+          data-instgrm-permalink="https://www.instagram.com/p/DMNAfEeR-Mc/"
+          data-instgrm-version="14"
+        ></blockquote>
+      </div>
+
+      <div className="instaEmbed">
+        <blockquote
+          className="instagram-media"
+          data-instgrm-permalink="https://www.instagram.com/p/C3B6fF_PE6Z/"
+          data-instgrm-version="14"
+        ></blockquote>
+      </div>
+    </div>
+  </div>
+</section>
+
+{/* Instagram embed script (include once) */}
+<script async src="https://www.instagram.com/embed.js"></script>
+
+
 const TESTIMONIALS = [
   {
     name: "Stephanie",
@@ -70,16 +130,6 @@ const TESTIMONIALS = [
   },
 ] as const;
 
-// IMPORTANT: These filenames must exist in /public/work
-const WORK_IMAGES = [
-  { src: "/work/turf-1.jpg", alt: "Turf and landscaping" },
-  { src: "/work/turf-2.jpg", alt: "Artificial turf" },
-  { src: "/work/decking-1.jpg", alt: "Decking" },
-  { src: "/work/decking-2.jpg", alt: "Decking and landscaping" },
-  { src: "/work/steppers-1.jpg", alt: "Stones and steppers" },
-  { src: "/work/pool-area-1.jpg", alt: "Pool landscaping" },
-  { src: "/work/feature-garden-1.jpg", alt: "Garden renovation" },
-] as const;
 
 function Section({ id, title, subtitle, children }: { id?: string; title: string; subtitle?: string; children: React.ReactNode }) {
   return (
