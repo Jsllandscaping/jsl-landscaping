@@ -83,6 +83,7 @@ const INSTAGRAM_POSTS = [
   "https://www.instagram.com/p/C3B6fF_PE6Z/",
 ] as const;
 
+
 declare global {
   interface Window {
     instgrm?: { Embeds?: { process: () => void } };
@@ -90,7 +91,6 @@ declare global {
 }
 
     return { src: src as string, alt: nice };
-  });
 
 function Section({ id, title, subtitle, children }: { id?: string; title: string; subtitle?: string; children: React.ReactNode }) {
   return (
