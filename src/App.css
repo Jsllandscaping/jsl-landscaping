@@ -152,6 +152,26 @@ body{
   gap: 14px;
 }
 
+.instaGrid{
+  display:grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 14px;
+}
+
+.instaCard{
+  background: #fff;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  overflow:hidden;
+  padding: 12px;
+}
+
+@media (max-width: 900px){
+  .instaGrid{ grid-template-columns: 1fr; }
+}
+
+
 /* consistent photo tiles without “half chopped” feeling */
 .galleryItem{
   background:#e9efe9;
