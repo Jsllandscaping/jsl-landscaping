@@ -1,4 +1,5 @@
 import "./App.css";
+import { useEffect } from "react";
 
 // Simple local UI components (no external UI libraries)
 function Card({ children, className = "" }: { children: React.ReactNode; className?: string }) {
@@ -37,66 +38,6 @@ const SERVICES = [
   },
 ] as const;
 
-{/* Instagram Embeds */}
-<section className="section">
-  <div className="container">
-    <h2 className="h2 text-center mb-8">Latest from Instagram</h2>
-    <div className="grid2" style={{ gap: "16px" }}>
-      <div className="instaEmbed">
-        <blockquote
-          className="instagram-media"
-          data-instgrm-permalink="https://www.instagram.com/p/DBJMb83ymWT/"
-          data-instgrm-version="14"
-        ></blockquote>
-      </div>
-
-      <div className="instaEmbed">
-        <blockquote
-          className="instagram-media"
-          data-instgrm-permalink="https://www.instagram.com/p/DEHO8ogSQFu/"
-          data-instgrm-version="14"
-        ></blockquote>
-      </div>
-
-      <div className="instaEmbed">
-        <blockquote
-          className="instagram-media"
-          data-instgrm-permalink="https://www.instagram.com/p/DJDsutrSVzj/"
-          data-instgrm-version="14"
-        ></blockquote>
-      </div>
-
-      <div className="instaEmbed">
-        <blockquote
-          className="instagram-media"
-          data-instgrm-permalink="https://www.instagram.com/p/DSwtsuDkwMe/"
-          data-instgrm-version="14"
-        ></blockquote>
-      </div>
-
-      <div className="instaEmbed">
-        <blockquote
-          className="instagram-media"
-          data-instgrm-permalink="https://www.instagram.com/p/DMNAfEeR-Mc/"
-          data-instgrm-version="14"
-        ></blockquote>
-      </div>
-
-      <div className="instaEmbed">
-        <blockquote
-          className="instagram-media"
-          data-instgrm-permalink="https://www.instagram.com/p/C3B6fF_PE6Z/"
-          data-instgrm-version="14"
-        ></blockquote>
-      </div>
-    </div>
-  </div>
-</section>
-
-{/* Instagram embed script (include once) */}
-<script async src="https://www.instagram.com/embed.js"></script>
-
-
 const TESTIMONIALS = [
   {
     name: "Stephanie",
@@ -130,6 +71,26 @@ const TESTIMONIALS = [
   },
 ] as const;
 
+// Instagram
+const INSTAGRAM_URL = "https://www.instagram.com/jsllandscaping/";
+
+const INSTAGRAM_POSTS = [
+  "https://www.instagram.com/p/DBJMb83ymWT/",
+  "https://www.instagram.com/p/DEHO8ogSQFu/",
+  "https://www.instagram.com/p/DJDsutrSVzj/",
+  "https://www.instagram.com/p/DSwtsuDkwMe/",
+  "https://www.instagram.com/p/DMNAfEeR-Mc/",
+  "https://www.instagram.com/p/C3B6fF_PE6Z/",
+] as const;
+
+declare global {
+  interface Window {
+    instgrm?: { Embeds?: { process: () => void } };
+  }
+}
+
+    return { src: src as string, alt: nice };
+  });
 
 function Section({ id, title, subtitle, children }: { id?: string; title: string; subtitle?: string; children: React.ReactNode }) {
   return (
@@ -146,6 +107,24 @@ function Section({ id, title, subtitle, children }: { id?: string; title: string
 }
 
 export default function App() {
+  // Always start visitors at the top (prevents weird refresh positions like landing mid-gallery)
+  useEffect(() => {
+    window.scrollTo(0, 0);
+
+    // Load Instagram embed script once, then process embeds
+    const existing = document.querySelector('script[src="https://www.instagram.com/embed.js"]');
+    if (!existing) {
+      const s = document.createElement("script");
+      s.src = "https://www.instagram.com/embed.js";
+      s.async = true;
+      s.onload = () => window.instgrm?.Embeds?.process?.();
+      document.body.appendChild(s);
+    } else {
+      // If script already present, just process
+      window.instgrm?.Embeds?.process?.();
+    }
+  }, []);
+
   return (
     <div className="page">
       {/* Header */}
@@ -222,6 +201,32 @@ export default function App() {
         </div>
       </Section>
 
+      {/* Latest Work */}
+      <Section title="Latest Work" subtitle="See our most recent projects and updates on Instagram.">
+        <div className="ctaBar" style={{ marginBottom: 16 }}>
+          <div>
+            <div className="ctaTitle">JSL Landscaping on Instagram</div>
+            <div className="muted">Before & afters, new builds and garden renovations across Perth’s Northern Suburbs.</div>
+          </div>
+          <a className="linkReset" href={INSTAGRAM_URL} target="_blank" rel="noreferrer">
+            <Button className="btnPrimary">View Instagram</Button>
+          </a>
+        </div>
+
+        <div className="instaGrid">
+          {INSTAGRAM_POSTS.map((url) => (
+            <div key={url} className="instaCard">
+              <blockquote className="instagram-media" data-instgrm-permalink={url} data-instgrm-version="14">
+                <a href={url} target="_blank" rel="noreferrer">View this post on Instagram</a>
+              </blockquote>
+            </div>
+          ))}
+        </div>
+
+        <div className="muted" style={{ textAlign: "center", marginTop: 12 }}>
+          If the posts don’t appear straight away, refresh once — Instagram embeds can take a moment to load.
+        </div>
+      </Section>
 
       {/* Testimonials */}
       <Section title="What Our Clients Say" subtitle="Real reviews from homeowners.">
