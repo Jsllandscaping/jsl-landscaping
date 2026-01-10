@@ -84,14 +84,6 @@ const INSTAGRAM_POSTS = [
 ] as const;
 
 
-declare global {
-  interface Window {
-    instgrm?: { Embeds?: { process: () => void } };
-  }
-}
-
-    return { src: src as string, alt: nice };
-
 function Section({ id, title, subtitle, children }: { id?: string; title: string; subtitle?: string; children: React.ReactNode }) {
   return (
     <section id={id} className="section">
