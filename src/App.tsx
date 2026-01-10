@@ -202,31 +202,33 @@ export default function App() {
       </Section>
 
       {/* Latest Work */}
-      <Section title="Latest Work" subtitle="See our most recent projects and updates on Instagram.">
-        <div className="ctaBar" style={{ marginBottom: 16 }}>
-          <div>
-            <div className="ctaTitle">JSL Landscaping on Instagram</div>
-            <div className="muted">Before & afters, new builds and garden renovations across Perth’s Northern Suburbs.</div>
-          </div>
-          <a className="linkReset" href={INSTAGRAM_URL} target="_blank" rel="noreferrer">
-            <Button className="btnPrimary">View Instagram</Button>
-          </a>
-        </div>
+     <div className="instaGrid">
+  {[
+    "https://www.instagram.com/p/DBJMb83ymWT/",
+    "https://www.instagram.com/p/DEHO8ogSQFu/",
+    "https://www.instagram.com/p/DJDsutrSVzj/",
+    "https://www.instagram.com/p/DSwtsuDkwMe/",
+    "https://www.instagram.com/p/DMNAfEeR-Mc/",
+    "https://www.instagram.com/p/C3B6fF_PE6Z/"
+  ].map((url) => (
+    <a
+      key={url}
+      href={url}
+      target="_blank"
+      rel="noreferrer"
+      className="instaLink"
+    >
+      <div className="instaThumb">
+        <div className="instaBadge">Instagram</div>
+      </div>
+      <div className="instaMeta">
+        <div className="instaTitle">View this job</div>
+        <div className="instaSub">Tap to open the post</div>
+      </div>
+    </a>
+  ))}
+</div>
 
-        <div className="instaGrid">
-          {INSTAGRAM_POSTS.map((url) => (
-            <div key={url} className="instaCard">
-              <blockquote className="instagram-media" data-instgrm-permalink={url} data-instgrm-version="14">
-                <a href={url} target="_blank" rel="noreferrer">View this post on Instagram</a>
-              </blockquote>
-            </div>
-          ))}
-        </div>
-
-        <div className="muted" style={{ textAlign: "center", marginTop: 12 }}>
-          If the posts don’t appear straight away, refresh once — Instagram embeds can take a moment to load.
-        </div>
-      </Section>
 
       {/* Testimonials */}
       <Section title="What Our Clients Say" subtitle="Real reviews from homeowners.">
