@@ -103,20 +103,6 @@ export default function App() {
   useEffect(() => {
     window.scrollTo(0, 0);
 
-    // Load Instagram embed script once, then process embeds
-    const existing = document.querySelector('script[src="https://www.instagram.com/embed.js"]');
-    if (!existing) {
-      const s = document.createElement("script");
-      s.src = "https://www.instagram.com/embed.js";
-      s.async = true;
-      s.onload = () => window.instgrm?.Embeds?.process?.();
-      document.body.appendChild(s);
-    } else {
-      // If script already present, just process
-      window.instgrm?.Embeds?.process?.();
-    }
-  }, []);
-
   return (
     <div className="page">
       {/* Header */}
@@ -193,33 +179,51 @@ export default function App() {
         </div>
       </Section>
 
-      {/* Latest Work */}
-     <div className="instaGrid">
-  {[
-    "https://www.instagram.com/p/DBJMb83ymWT/",
-    "https://www.instagram.com/p/DEHO8ogSQFu/",
-    "https://www.instagram.com/p/DJDsutrSVzj/",
-    "https://www.instagram.com/p/DSwtsuDkwMe/",
-    "https://www.instagram.com/p/DMNAfEeR-Mc/",
-    "https://www.instagram.com/p/C3B6fF_PE6Z/"
-  ].map((url) => (
+    <Section title="Latest Work" subtitle="See our recent projects on Instagram">
+  <div className="ctaBar" style={{ marginBottom: 16 }}>
+    <div>
+      <div className="ctaTitle">JSL Landscaping on Instagram</div>
+      <div className="muted">
+        Before & afters, new builds and garden renovations across Perth’s Northern Suburbs.
+      </div>
+    </div>
     <a
-      key={url}
-      href={url}
+      href="https://www.instagram.com/jsllandscaping/"
       target="_blank"
       rel="noreferrer"
-      className="instaLink"
+      className="linkReset"
     >
-      <div className="instaThumb">
-        <div className="instaBadge">Instagram</div>
-      </div>
-      <div className="instaMeta">
-        <div className="instaTitle">View this job</div>
-        <div className="instaSub">Tap to open the post</div>
-      </div>
+      <Button className="btnPrimary">View Instagram</Button>
     </a>
-  ))}
-</div>
+  </div>
+
+  <div className="instaGrid">
+    {[
+      "https://www.instagram.com/p/DBJMb83ymWT/",
+      "https://www.instagram.com/p/DEHO8ogSQFu/",
+      "https://www.instagram.com/p/DJDsutrSVzj/",
+      "https://www.instagram.com/p/DSwtsuDkwMe/",
+      "https://www.instagram.com/p/DMNAfEeR-Mc/",
+      "https://www.instagram.com/p/C3B6fF_PE6Z/",
+    ].map((url) => (
+      <a
+        key={url}
+        href={url}
+        target="_blank"
+        rel="noreferrer"
+        className="instaLink"
+      >
+        <div className="instaThumb">
+          <div className="instaBadge">Instagram</div>
+        </div>
+        <div className="instaMeta">
+          <div className="instaTitle">View this job</div>
+          <div className="instaSub">Tap to open the post</div>
+        </div>
+      </a>
+    ))}
+  </div>
+</Section>
 
 
       {/* Testimonials */}
