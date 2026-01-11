@@ -83,6 +83,14 @@ const INSTAGRAM_POSTS = [
   "https://www.instagram.com/p/C3B6fF_PE6Z/",
 ] as const;
 
+const THUMBNAILS = [
+  { img: "/work/1.jpg", url: "https://www.instagram.com/p/DBJMb83ymWT/" },
+  { img: "/work/2.jpg", url: "https://www.instagram.com/p/DEHO8ogSQFu/" },
+  { img: "/work/3.jpg", url: "https://www.instagram.com/p/DJDsutrSVzj/" },
+  { img: "/work/4.jpg", url: "https://www.instagram.com/p/DSwtsuDkwMe/" },
+  { img: "/work/5.jpg", url: "https://www.instagram.com/p/DMNAfEeR-Mc/" },
+  { img: "/work/6.jpg", url: "https://www.instagram.com/p/C3B6fF_PE6Z/" },
+] as const;
 
 function Section({ id, title, subtitle, children }: { id?: string; title: string; subtitle?: string; children: React.ReactNode }) {
   return (
@@ -164,17 +172,27 @@ export default function App() {
         </div>
       </Section>
 
-      {/* Latest Work (links, not embeds) */}
-      <Section title="Latest Work" subtitle="See our recent projects on Instagram">
-        <div className="ctaBar" style={{ marginBottom: 16 }}>
-          <div>
-            <div className="ctaTitle">JSL Landscaping on Instagram</div>
-            <div className="muted">Before & afters, new builds and garden renovations</div>
-          </div>
-          <a href={INSTAGRAM_URL} target="_blank" rel="noreferrer" className="linkReset">
-            <Button className="btnPrimary">View Instagram</Button>
-          </a>
-        </div>
+     <Section title="Latest Work" subtitle="A few recent projects — tap a photo to view the full post on Instagram.">
+  <div className="thumbGrid">
+    {THUMBNAILS.map((t) => (
+      <a key={t.img} href={t.url} target="_blank" rel="noreferrer" className="thumbItem">
+        <img
+          src={t.img}
+          alt="JSL Landscaping project"
+          loading="lazy"
+          className="thumbImg"
+        />
+      </a>
+    ))}
+  </div>
+
+  <div style={{ textAlign: "center", marginTop: 14 }}>
+    <a href={INSTAGRAM_URL} target="_blank" rel="noreferrer" className="linkReset">
+      <Button className="btnPrimary">View More on Instagram</Button>
+    </a>
+  </div>
+</Section>
+
 
         <div className="instaGrid">
           {INSTAGRAM_POSTS.map((url) => (
