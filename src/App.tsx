@@ -99,9 +99,9 @@ function Section({ id, title, subtitle, children }: { id?: string; title: string
 }
 
 export default function App() {
-  // Always start visitors at the top (prevents weird refresh positions like landing mid-gallery)
   useEffect(() => {
     window.scrollTo(0, 0);
+  }, []);
 
   return (
     <div className="page">
@@ -109,14 +109,7 @@ export default function App() {
       <header className="header">
         <div className="container headerInner">
           <div className="brand">
-            <img
-              src="/logo-jsl.png"
-              alt="JSL Landscaping logo"
-              className="logo"
-              onError={(e) => {
-                (e.currentTarget as HTMLImageElement).style.display = "none";
-              }}
-            />
+            <img src="/logo-jsl.png" alt="JSL Landscaping logo" className="logo" />
             <div className="brandText">
               <div className="brandName">JSL Landscaping</div>
               <div className="brandMeta">Perth, Western Australia</div>
@@ -145,25 +138,17 @@ export default function App() {
 
           <div className="heroCtas">
             <a href={`tel:${PHONE_TEL}`} className="linkReset">
-              <Button className="btnWhite">Call {PHONE_DISPLAY} – Free Quote</Button>
+              <Button className="btnWhite">Call {PHONE_DISPLAY}</Button>
             </a>
             <a href="#quote" className="linkReset">
               <Button className="btnDark">Request a Quote</Button>
             </a>
           </div>
-
-          <div className="heroChips">
-            <div className="chip">Servicing all Perth • Focus: NOR suburbs</div>
-            <div className="chip">Tidy work sites • Quality finishes</div>
-          </div>
         </div>
       </section>
 
       {/* Services */}
-      <Section
-        title="Services"
-        subtitle="Residential landscaping for new builds and garden renovations across Perth, with a strong focus North of the River."
-      >
+      <Section title="Services" subtitle="Residential landscaping for new builds and garden renovations across Perth.">
         <div className="grid3">
           {SERVICES.map((s) => (
             <Card key={s.title}>
@@ -179,55 +164,35 @@ export default function App() {
         </div>
       </Section>
 
-    <Section title="Latest Work" subtitle="See our recent projects on Instagram">
-  <div className="ctaBar" style={{ marginBottom: 16 }}>
-    <div>
-      <div className="ctaTitle">JSL Landscaping on Instagram</div>
-      <div className="muted">
-        Before & afters, new builds and garden renovations across Perth’s Northern Suburbs.
-      </div>
-    </div>
-    <a
-      href="https://www.instagram.com/jsllandscaping/"
-      target="_blank"
-      rel="noreferrer"
-      className="linkReset"
-    >
-      <Button className="btnPrimary">View Instagram</Button>
-    </a>
-  </div>
-
-  <div className="instaGrid">
-    {[
-      "https://www.instagram.com/p/DBJMb83ymWT/",
-      "https://www.instagram.com/p/DEHO8ogSQFu/",
-      "https://www.instagram.com/p/DJDsutrSVzj/",
-      "https://www.instagram.com/p/DSwtsuDkwMe/",
-      "https://www.instagram.com/p/DMNAfEeR-Mc/",
-      "https://www.instagram.com/p/C3B6fF_PE6Z/",
-    ].map((url) => (
-      <a
-        key={url}
-        href={url}
-        target="_blank"
-        rel="noreferrer"
-        className="instaLink"
-      >
-        <div className="instaThumb">
-          <div className="instaBadge">Instagram</div>
+      {/* Latest Work (links, not embeds) */}
+      <Section title="Latest Work" subtitle="See our recent projects on Instagram">
+        <div className="ctaBar" style={{ marginBottom: 16 }}>
+          <div>
+            <div className="ctaTitle">JSL Landscaping on Instagram</div>
+            <div className="muted">Before & afters, new builds and garden renovations</div>
+          </div>
+          <a href={INSTAGRAM_URL} target="_blank" rel="noreferrer" className="linkReset">
+            <Button className="btnPrimary">View Instagram</Button>
+          </a>
         </div>
-        <div className="instaMeta">
-          <div className="instaTitle">View this job</div>
-          <div className="instaSub">Tap to open the post</div>
-        </div>
-      </a>
-    ))}
-  </div>
-</Section>
 
+        <div className="instaGrid">
+          {INSTAGRAM_POSTS.map((url) => (
+            <a key={url} href={url} target="_blank" rel="noreferrer" className="instaLink">
+              <div className="instaThumb">
+                <div className="instaBadge">Instagram</div>
+              </div>
+              <div className="instaMeta">
+                <div className="instaTitle">View this job</div>
+                <div className="instaSub">Tap to open the post</div>
+              </div>
+            </a>
+          ))}
+        </div>
+      </Section>
 
       {/* Testimonials */}
-      <Section title="What Our Clients Say" subtitle="Real reviews from homeowners.">
+      <Section title="What Our Clients Say">
         <div className="grid2">
           {TESTIMONIALS.map((t) => (
             <Card key={t.name}>
@@ -239,14 +204,11 @@ export default function App() {
       </Section>
 
       {/* Service Areas */}
-      <Section
-        title="Service Areas"
-        subtitle={`Servicing all of Perth with a strong focus on North of the River suburbs. We regularly work in ${SUBURBS.join(", ")} and surrounding new-build and established residential areas.`}
-      >
+      <Section title="Service Areas" subtitle={`Servicing all of Perth, especially ${SUBURBS.join(", ")}.`}>
         <div className="ctaBar">
           <div>
             <div className="ctaTitle">Fast, clear quoting</div>
-            <div className="muted">Call us for a free quote and we’ll organise a time to view the job.</div>
+            <div className="muted">Call us for a free quote</div>
           </div>
           <a href={`tel:${PHONE_TEL}`} className="linkReset">
             <Button className="btnPrimary">Call {PHONE_DISPLAY}</Button>
@@ -259,7 +221,6 @@ export default function App() {
         <div className="container">
           <div className="sectionHead">
             <h2 className="h2">Request a Free Quote</h2>
-            <p className="subhead">Free quotes for new builds and existing garden renovations across Perth’s Northern Suburbs.</p>
           </div>
 
           <div className="contactTop">
@@ -280,15 +241,10 @@ export default function App() {
               <input name="email" placeholder="Email Address" required />
               <input name="suburb" placeholder="Suburb" />
             </div>
-            <textarea
-              name="message"
-              placeholder="Tell us about your project (turf, paving, decking, limestone walls, etc.)"
-              rows={5}
-            />
+            <textarea name="message" placeholder="Tell us about your project" rows={5} />
             <Button type="submit" className="btnWhite formBtn">
               Submit Enquiry
             </Button>
-            <div className="formNote">Prefer a quick quote? Tap to call and we’ll organise a time to view the job.</div>
           </form>
         </div>
       </section>
@@ -303,12 +259,3 @@ export default function App() {
     </div>
   );
 }
-
-/*
-MANUAL TEST CASES (quick checks)
-1) Site looks styled (not plain) — App.css is being loaded.
-2) Gallery images are not huge; they are cropped nicely.
-3) Buttons look consistent.
-4) Mobile layout: cards stack nicely.
-5) If an image is missing, it hides without breaking layout.
-*/
