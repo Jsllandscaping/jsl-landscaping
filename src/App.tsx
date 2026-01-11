@@ -1,5 +1,15 @@
 import React from "react";
 
+const COLORS = {
+  primary: "#1F7A4D",        // Forest green
+  primaryDark: "#145A3A",
+  softBg: "#F1F8F4",
+  accent: "#A7D7C5",
+  textDark: "#0b1220",
+  textMuted: "#3b4656",
+  border: "#e1eee8",
+};
+
 export default function App() {
   const phoneDisplay = "0415 893 100";
   const phoneDial = "0415893100";
@@ -292,13 +302,19 @@ function Step(props: { number: string; title: string; desc: string }) {
 
 const styles: Record<string, React.CSSProperties> = {
   page: {
-    fontFamily: '-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Inter, Arial, sans-serif',
-    color: "#0b1220",
+    fontFamily:
+      '-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Inter, Arial, sans-serif',
+    color: COLORS.textDark,
     background: "#ffffff",
   },
+
   skipLink: { position: "absolute", left: -9999, top: 10 },
 
-  topBar: { borderBottom: "1px solid #eef1f6", background: "#fbfcff" },
+  topBar: {
+    borderBottom: `1px solid ${COLORS.border}`,
+    background: COLORS.softBg,
+  },
+
   container: { maxWidth: 1120, margin: "0 auto", padding: "0 20px" },
   containerRow: {
     maxWidth: 1120,
@@ -310,21 +326,28 @@ const styles: Record<string, React.CSSProperties> = {
     gap: 12,
     flexWrap: "wrap",
   },
+
   topBarLeft: { display: "flex", gap: 10, alignItems: "center" },
   topBarRight: { display: "flex", gap: 10, alignItems: "center" },
-  miniLabel: { fontSize: 12, color: "#556070" },
-  miniValue: { fontSize: 12, color: "#0b1220", fontWeight: 600 },
-  topLink: { fontSize: 12, color: "#0b1220", textDecoration: "none", fontWeight: 600 },
+  miniLabel: { fontSize: 12, color: COLORS.textMuted },
+  miniValue: { fontSize: 12, fontWeight: 700 },
+  topLink: {
+    fontSize: 12,
+    color: COLORS.primary,
+    textDecoration: "none",
+    fontWeight: 700,
+  },
   dot: { color: "#9aa3b2" },
 
   header: {
     position: "sticky",
     top: 0,
     zIndex: 20,
-    background: "rgba(255,255,255,0.9)",
+    background: "rgba(255,255,255,0.95)",
     backdropFilter: "blur(8px)",
-    borderBottom: "1px solid #eef1f6",
+    borderBottom: `1px solid ${COLORS.border}`,
   },
+
   brand: { display: "flex", alignItems: "center", gap: 12 },
   logoMark: {
     width: 44,
@@ -332,171 +355,157 @@ const styles: Record<string, React.CSSProperties> = {
     borderRadius: 12,
     display: "grid",
     placeItems: "center",
-    background: "#0b1220",
+    background: COLORS.primary,
     color: "#ffffff",
-    fontWeight: 800,
+    fontWeight: 900,
     letterSpacing: 0.5,
   },
-  brandName: { fontWeight: 800, fontSize: 16, lineHeight: 1.2 },
-  brandTag: { fontSize: 12, color: "#556070", marginTop: 2 },
+  brandName: { fontWeight: 900, fontSize: 16 },
+  brandTag: { fontSize: 12, color: COLORS.textMuted },
 
   nav: { display: "flex", alignItems: "center", gap: 12, flexWrap: "wrap" },
-  navLink: { color: "#0b1220", textDecoration: "none", fontSize: 14, padding: "10px 10px", borderRadius: 10 },
-  navLinkCTA: {
-    color: "#ffffff",
-    background: "#0b1220",
+  navLink: {
+    color: COLORS.textDark,
     textDecoration: "none",
     fontSize: 14,
+    padding: "10px",
+    borderRadius: 10,
+  },
+  navLinkCTA: {
+    background: COLORS.primary,
+    color: "#ffffff",
     padding: "10px 14px",
     borderRadius: 12,
-    fontWeight: 700,
+    fontWeight: 800,
+    textDecoration: "none",
   },
 
   hero: {
-    background: "linear-gradient(180deg, #f6f8ff 0%, rgba(246,248,255,0) 60%)",
-    borderBottom: "1px solid #eef1f6",
+    background: `linear-gradient(180deg, ${COLORS.softBg} 0%, #ffffff 65%)`,
+    borderBottom: `1px solid ${COLORS.border}`,
   },
+
   heroGrid: {
     display: "grid",
     gridTemplateColumns: "1.15fr 0.85fr",
     gap: 20,
     padding: "34px 0",
-    alignItems: "stretch",
   },
-  h1: { fontSize: 44, lineHeight: 1.1, margin: 0, letterSpacing: -0.8 },
-  lead: { marginTop: 14, fontSize: 16, lineHeight: 1.6, color: "#3b4656" },
+
+  h1: { fontSize: 44, lineHeight: 1.1, margin: 0 },
+  lead: { marginTop: 14, fontSize: 16, lineHeight: 1.6, color: COLORS.textMuted },
+
   heroActions: { display: "flex", gap: 12, marginTop: 18, flexWrap: "wrap" },
+
   primaryBtn: {
-    display: "inline-block",
+    background: COLORS.primary,
+    color: "#ffffff",
+    padding: "12px 18px",
+    borderRadius: 14,
+    fontWeight: 800,
     border: "none",
     cursor: "pointer",
-    background: "#0b1220",
-    color: "#ffffff",
-    padding: "12px 16px",
-    borderRadius: 14,
     textDecoration: "none",
-    fontWeight: 800,
-    fontSize: 14,
   },
+
   secondaryBtn: {
-    display: "inline-block",
     background: "#ffffff",
-    color: "#0b1220",
-    padding: "12px 16px",
+    color: COLORS.primary,
+    border: `2px solid ${COLORS.primary}`,
+    padding: "10px 16px",
     borderRadius: 14,
-    textDecoration: "none",
     fontWeight: 800,
-    fontSize: 14,
-    border: "1px solid #e7eaf2",
+    textDecoration: "none",
   },
+
   heroBadges: { display: "flex", gap: 10, marginTop: 18, flexWrap: "wrap" },
   badge: {
     fontSize: 12,
     background: "#ffffff",
-    border: "1px solid #e7eaf2",
-    padding: "8px 10px",
+    border: `1px solid ${COLORS.accent}`,
+    padding: "8px 12px",
     borderRadius: 999,
-    color: "#0b1220",
-    fontWeight: 700,
+    color: COLORS.primary,
+    fontWeight: 800,
   },
 
   heroCard: {
     background: "#ffffff",
-    border: "1px solid #e7eaf2",
+    border: `1px solid ${COLORS.accent}`,
     borderRadius: 18,
-    boxShadow: "0 10px 30px rgba(11,18,32,0.06)",
+    boxShadow: "0 12px 30px rgba(0,0,0,0.08)",
   },
+
   heroCardInner: { padding: 18 },
+
   h2: { margin: 0, fontSize: 18 },
-  infoRow: { display: "flex", justifyContent: "space-between", gap: 12, marginTop: 12 },
-  infoLabel: { fontSize: 13, color: "#556070" },
-  infoValue: { fontSize: 13, fontWeight: 700, color: "#0b1220", textAlign: "right" },
-  divider: { height: 1, background: "#eef1f6", margin: "16px 0" },
-  cardBtn: {
-    display: "block",
-    textAlign: "center",
-    background: "#0b1220",
-    color: "#ffffff",
-    padding: "12px 14px",
-    borderRadius: 14,
-    textDecoration: "none",
-    fontWeight: 800,
-    fontSize: 14,
+
+  infoRow: {
+    display: "flex",
+    justifyContent: "space-between",
+    marginTop: 12,
   },
-  smallNote: { marginTop: 12, fontSize: 12, color: "#556070", lineHeight: 1.5 },
-  inlineLink: { color: "#0b1220", fontWeight: 800, textDecoration: "none" },
+  infoLabel: { fontSize: 13, color: COLORS.textMuted },
+  infoValue: { fontSize: 13, fontWeight: 700 },
+
+  divider: {
+    height: 1,
+    background: COLORS.border,
+    margin: "16px 0",
+  },
+
+  cardBtn: {
+    background: COLORS.primary,
+    color: "#ffffff",
+    padding: "12px",
+    borderRadius: 14,
+    textAlign: "center",
+    fontWeight: 800,
+    textDecoration: "none",
+  },
+
+  smallNote: { fontSize: 12, color: COLORS.textMuted, marginTop: 12 },
 
   section: { padding: "54px 0" },
   sectionAlt: {
     padding: "54px 0",
-    background: "#fbfcff",
-    borderTop: "1px solid #eef1f6",
-    borderBottom: "1px solid #eef1f6",
+    background: COLORS.softBg,
+    borderTop: `1px solid ${COLORS.border}`,
+    borderBottom: `1px solid ${COLORS.border}`,
   },
-  sectionTitle: { margin: 0, fontSize: 28, letterSpacing: -0.4 },
-  sectionDesc: { marginTop: 10, color: "#3b4656", lineHeight: 1.6, maxWidth: 720 },
 
-  cardsGrid: { marginTop: 18, display: "grid", gridTemplateColumns: "repeat(3, minmax(0, 1fr))", gap: 14 },
-  card: { border: "1px solid #e7eaf2", borderRadius: 18, padding: 16, background: "#ffffff" },
-  cardTitle: { fontWeight: 900, fontSize: 15, marginBottom: 8 },
-  cardDesc: { color: "#3b4656", lineHeight: 1.5, fontSize: 13 },
+  sectionTitle: { fontSize: 28, margin: 0 },
+  sectionDesc: { marginTop: 10, maxWidth: 720, color: COLORS.textMuted },
 
-  stepsGrid: { marginTop: 18, display: "grid", gridTemplateColumns: "repeat(2, minmax(0, 1fr))", gap: 14 },
-  stepCard: {
-    display: "flex",
-    gap: 12,
-    border: "1px solid #e7eaf2",
+  cardsGrid: {
+    marginTop: 18,
+    display: "grid",
+    gridTemplateColumns: "repeat(3, 1fr)",
+    gap: 14,
+  },
+
+  card: {
+    border: `1px solid ${COLORS.border}`,
     borderRadius: 18,
     padding: 16,
     background: "#ffffff",
-    alignItems: "flex-start",
   },
-  stepNumber: {
-    width: 34,
-    height: 34,
-    borderRadius: 12,
-    background: "#0b1220",
-    color: "#fff",
-    display: "grid",
-    placeItems: "center",
-    fontWeight: 900,
+
+  cardTitle: { fontWeight: 900, marginBottom: 8 },
+  cardDesc: { fontSize: 13, color: COLORS.textMuted },
+
+  footer: {
+    borderTop: `1px solid ${COLORS.border}`,
+    background: COLORS.softBg,
+    padding: "22px 0",
   },
-  stepTitle: { fontWeight: 900, marginBottom: 6 },
-  stepDesc: { color: "#3b4656", lineHeight: 1.5, fontSize: 13 },
 
-  quoteCard: { border: "1px solid #e7eaf2", borderRadius: 18, padding: 16, background: "#ffffff" },
-  quote: { margin: 0, color: "#0b1220", lineHeight: 1.6, fontWeight: 650 },
-  quoteName: { marginTop: 10, fontSize: 12, color: "#556070", fontWeight: 800 },
-
-  faqGrid: { marginTop: 18, display: "grid", gridTemplateColumns: "repeat(2, minmax(0, 1fr))", gap: 12 },
-  faqItem: { border: "1px solid #e7eaf2", borderRadius: 18, padding: 14, background: "#ffffff" },
-  faqQ: { cursor: "pointer", fontWeight: 900 },
-  faqA: { marginTop: 10, color: "#3b4656", lineHeight: 1.6, fontSize: 13 },
-
-  contactWrap: { display: "grid", gridTemplateColumns: "1fr 1fr", gap: 16, marginTop: 18, alignItems: "start" },
-  contactCards: { display: "grid", gridTemplateColumns: "1fr 1fr", gap: 12, marginTop: 14 },
-  contactCard: {
-    textDecoration: "none",
-    border: "1px solid #e7eaf2",
-    borderRadius: 18,
-    padding: 14,
-    background: "#ffffff",
-    color: "#0b1220",
-  },
-  contactCardLabel: { fontSize: 12, color: "#556070", fontWeight: 800 },
-  contactCardValue: { marginTop: 6, fontWeight: 900 },
-
-  form: { border: "1px solid #e7eaf2", borderRadius: 18, padding: 16, background: "#ffffff" },
-  formRow: { display: "grid", gridTemplateColumns: "1fr 1fr", gap: 12 },
-  label: { display: "grid", gap: 6, fontSize: 12, fontWeight: 900, color: "#0b1220" },
-  input: { border: "1px solid #e7eaf2", borderRadius: 14, padding: "12px 12px", fontSize: 14, outline: "none" },
-  textarea: { border: "1px solid #e7eaf2", borderRadius: 14, padding: "12px 12px", fontSize: 14, outline: "none", resize: "vertical" },
-  formNote: { marginTop: 10, fontSize: 12, color: "#556070", lineHeight: 1.5 },
-
-  footer: { borderTop: "1px solid #eef1f6", padding: "22px 0", background: "#fbfcff" },
-  footerLeft: { display: "grid", gap: 6 },
-  footerRight: { display: "flex", alignItems: "center", gap: 10, flexWrap: "wrap" },
   footerBrand: { fontWeight: 900 },
-  footerText: { fontSize: 12, color: "#556070" },
-  footerLink: { color: "#0b1220", fontWeight: 900, textDecoration: "none", fontSize: 12 },
+  footerText: { fontSize: 12, color: COLORS.textMuted },
+  footerLink: {
+    color: COLORS.primary,
+    fontWeight: 800,
+    textDecoration: "none",
+    fontSize: 12,
+  },
 };
