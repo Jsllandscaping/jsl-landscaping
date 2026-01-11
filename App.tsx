@@ -1,7 +1,7 @@
 import "./App.css";
 import { useEffect } from "react";
 
-// Simple local UI components (no external UI libraries)
+// Simple local UI components
 function Card({ children, className = "" }: { children: React.ReactNode; className?: string }) {
   return <div className={`card ${className}`}>{children}</div>;
 }
@@ -111,24 +111,15 @@ export default function App() {
 
   return (
     <div className="page">
-      {/* Header */}
       <header className="header">
         <div className="container headerInner">
           <div className="brand">
-            <img
-              src="/logo-jsl.png"
-              alt="JSL Landscaping logo"
-              className="logo"
-              onError={(e) => {
-                (e.currentTarget as HTMLImageElement).style.display = "none";
-              }}
-            />
+            <img src="/logo-jsl.png" alt="JSL Landscaping logo" className="logo" />
             <div className="brandText">
               <div className="brandName">JSL Landscaping</div>
               <div className="brandMeta">Perth, Western Australia</div>
             </div>
           </div>
-
           <div className="headerCtas">
             <a href={`tel:${PHONE_TEL}`} className="linkReset">
               <Button className="btnSecondary">Call {PHONE_DISPLAY}</Button>
@@ -140,7 +131,6 @@ export default function App() {
         </div>
       </header>
 
-      {/* Hero */}
       <section className="hero">
         <div className="container heroInner">
           <h1 className="h1">Residential Landscaping – Perth Northern Suburbs</h1>
@@ -148,28 +138,18 @@ export default function App() {
             Turf, paving, decking, limestone walls, stones & steppers — full residential landscaping specialising North of the River.
           </p>
           <p className="heroText heroTextDim">Free quotes for new builds and existing garden renovations.</p>
-
           <div className="heroCtas">
             <a href={`tel:${PHONE_TEL}`} className="linkReset">
-              <Button className="btnWhite">Call {PHONE_DISPLAY} – Free Quote</Button>
+              <Button className="btnWhite">Call {PHONE_DISPLAY}</Button>
             </a>
             <a href="#quote" className="linkReset">
               <Button className="btnDark">Request a Quote</Button>
             </a>
           </div>
-
-          <div className="heroChips">
-            <div className="chip">Servicing all Perth • Focus: NOR suburbs</div>
-            <div className="chip">Tidy work sites • Quality finishes</div>
-          </div>
         </div>
       </section>
 
-      {/* Services */}
-      <Section
-        title="Services"
-        subtitle="Residential landscaping for new builds and garden renovations across Perth, with a strong focus North of the River."
-      >
+      <Section title="Services" subtitle="Residential landscaping for new builds and garden renovations across Perth.">
         <div className="grid3">
           {SERVICES.map((s) => (
             <Card key={s.title}>
@@ -184,19 +164,17 @@ export default function App() {
           ))}
         </div>
       </Section>
-<div style={{ textAlign: "center", fontWeight: 900, marginBottom: 12 }}>👇 Latest Work is here 👇</div>
-      {/* Latest Work (Instagram links) */}
-      <Section title="Latest Work" subtitle="Tap a card to open the post on Instagram.">
+
+      <Section title="Latest Work" subtitle="See our recent projects on Instagram">
         <div className="ctaBar" style={{ marginBottom: 16 }}>
           <div>
             <div className="ctaTitle">JSL Landscaping on Instagram</div>
-            <div className="muted">Before & afters, new builds and garden renovations across Perth’s Northern Suburbs.</div>
+            <div className="muted">Before & afters, new builds and garden renovations</div>
           </div>
-          <a className="linkReset" href={INSTAGRAM_URL} target="_blank" rel="noreferrer">
+          <a href={INSTAGRAM_URL} target="_blank" rel="noreferrer" className="linkReset">
             <Button className="btnPrimary">View Instagram</Button>
           </a>
         </div>
-
         <div className="instaGrid">
           {INSTAGRAM_POSTS.map((url) => (
             <a key={url} href={url} target="_blank" rel="noreferrer" className="instaLink">
@@ -212,8 +190,7 @@ export default function App() {
         </div>
       </Section>
 
-      {/* Testimonials */}
-      <Section title="What Our Clients Say" subtitle="Real reviews from homeowners.">
+      <Section title="What Our Clients Say">
         <div className="grid2">
           {TESTIMONIALS.map((t) => (
             <Card key={t.name}>
@@ -224,17 +201,11 @@ export default function App() {
         </div>
       </Section>
 
-      {/* Service Areas */}
-      <Section
-        title="Service Areas"
-        subtitle={`Servicing all of Perth with a strong focus on North of the River suburbs. We regularly work in ${SUBURBS.join(
-          ", "
-        )} and surrounding new-build and established residential areas.`}
-      >
+      <Section title="Service Areas" subtitle={`Servicing all of Perth, especially ${SUBURBS.join(", ")}.`}>
         <div className="ctaBar">
           <div>
             <div className="ctaTitle">Fast, clear quoting</div>
-            <div className="muted">Call us for a free quote and we’ll organise a time to view the job.</div>
+            <div className="muted">Call us for a free quote</div>
           </div>
           <a href={`tel:${PHONE_TEL}`} className="linkReset">
             <Button className="btnPrimary">Call {PHONE_DISPLAY}</Button>
@@ -242,14 +213,11 @@ export default function App() {
         </div>
       </Section>
 
-      {/* Contact */}
       <section id="quote" className="contact">
         <div className="container">
           <div className="sectionHead">
             <h2 className="h2">Request a Free Quote</h2>
-            <p className="subhead">Free quotes for new builds and existing garden renovations across Perth’s Northern Suburbs.</p>
           </div>
-
           <div className="contactTop">
             <a href={`tel:${PHONE_TEL}`} className="linkReset">
               <Button className="btnWhite">Call {PHONE_DISPLAY}</Button>
@@ -258,7 +226,6 @@ export default function App() {
               <Button className="btnDark">Email Us</Button>
             </a>
           </div>
-
           <form action={`mailto:${EMAIL}`} method="POST" encType="text/plain" className="form">
             <div className="formRow">
               <input name="name" placeholder="Full Name" required />
@@ -268,20 +235,12 @@ export default function App() {
               <input name="email" placeholder="Email Address" required />
               <input name="suburb" placeholder="Suburb" />
             </div>
-            <textarea
-              name="message"
-              placeholder="Tell us about your project (turf, paving, decking, limestone walls, etc.)"
-              rows={5}
-            />
-            <Button type="submit" className="btnWhite formBtn">
-              Submit Enquiry
-            </Button>
-            <div className="formNote">Prefer a quick quote? Tap to call and we’ll organise a time to view the job.</div>
+            <textarea name="message" placeholder="Tell us about your project" rows={5} />
+            <Button type="submit" className="btnWhite formBtn">Submit Enquiry</Button>
           </form>
         </div>
       </section>
 
-      {/* Footer */}
       <footer className="footer">
         <div className="container footerInner">
           <div>© {new Date().getFullYear()} JSL Landscaping</div>
