@@ -184,7 +184,7 @@ export default function App() {
           ))}
         </div>
       </Section>
-
+<div style={{ textAlign: "center", fontWeight: 900, marginBottom: 12 }}>👇 Latest Work is here 👇</div>
       {/* Latest Work (Instagram links) */}
       <Section title="Latest Work" subtitle="Tap a card to open the post on Instagram.">
         <div className="ctaBar" style={{ marginBottom: 16 }}>
