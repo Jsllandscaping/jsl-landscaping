@@ -17,6 +17,16 @@ function Button({ children, className = "", ...props }: React.ButtonHTMLAttribut
 const PHONE_DISPLAY = "0415 893 100";
 const PHONE_TEL = "0415893100";
 const EMAIL = "jsllandscaping@outlook.com.au";
+const INSTAGRAM_URL = "https://www.instagram.com/jsllandscaping/";
+
+const INSTAGRAM_POSTS = [
+  "https://www.instagram.com/p/DBJMb83ymWT/",
+  "https://www.instagram.com/p/DEHO8ogSQFu/",
+  "https://www.instagram.com/p/DJDsutrSVzj/",
+  "https://www.instagram.com/p/DSwtsuDkwMe/",
+  "https://www.instagram.com/p/DMNAfEeR-Mc/",
+  "https://www.instagram.com/p/C3B6fF_PE6Z/",
+] as const;
 
 const SUBURBS = ["Alkimos", "Jindalee", "Butler", "Yanchep", "Clarkson", "Ellenbrook"];
 
@@ -56,8 +66,7 @@ const TESTIMONIALS = [
   },
   {
     name: "Emma",
-    quote:
-      "JSL did a huge landscaping job for our newly built house. They did an amazing job at a reasonable price. Highly recommend!",
+    quote: "JSL did a huge landscaping job for our newly built house. They did an amazing job at a reasonable price. Highly recommend!",
   },
   {
     name: "Kylie",
@@ -71,13 +80,17 @@ const TESTIMONIALS = [
   },
 ] as const;
 
-// Instagram
-const INSTAGRAM_URL = "https://www.instagram.com/jsllandscaping/";
-
-    return { src: src as string, alt: nice };
-  });
-
-function Section({ id, title, subtitle, children }: { id?: string; title: string; subtitle?: string; children: React.ReactNode }) {
+function Section({
+  id,
+  title,
+  subtitle,
+  children,
+}: {
+  id?: string;
+  title: string;
+  subtitle?: string;
+  children: React.ReactNode;
+}) {
   return (
     <section id={id} className="section">
       <div className="container">
@@ -92,7 +105,6 @@ function Section({ id, title, subtitle, children }: { id?: string; title: string
 }
 
 export default function App() {
-  // Always start visitors at the top (prevents weird refresh positions like landing mid-gallery)
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
@@ -173,9 +185,9 @@ export default function App() {
         </div>
       </Section>
 
-      {/* Latest Work */}
-      <Section title="Latest Work" subtitle="See our most recent projects and updates on Instagram.">
-        <div className="ctaBar">
+      {/* Latest Work (Instagram links) */}
+      <Section title="Latest Work" subtitle="Tap a card to open the post on Instagram.">
+        <div className="ctaBar" style={{ marginBottom: 16 }}>
           <div>
             <div className="ctaTitle">JSL Landscaping on Instagram</div>
             <div className="muted">Before & afters, new builds and garden renovations across Perth’s Northern Suburbs.</div>
@@ -183,6 +195,20 @@ export default function App() {
           <a className="linkReset" href={INSTAGRAM_URL} target="_blank" rel="noreferrer">
             <Button className="btnPrimary">View Instagram</Button>
           </a>
+        </div>
+
+        <div className="instaGrid">
+          {INSTAGRAM_POSTS.map((url) => (
+            <a key={url} href={url} target="_blank" rel="noreferrer" className="instaLink">
+              <div className="instaThumb">
+                <div className="instaBadge">Instagram</div>
+              </div>
+              <div className="instaMeta">
+                <div className="instaTitle">View this job</div>
+                <div className="instaSub">Tap to open the post</div>
+              </div>
+            </a>
+          ))}
         </div>
       </Section>
 
@@ -201,7 +227,9 @@ export default function App() {
       {/* Service Areas */}
       <Section
         title="Service Areas"
-        subtitle={`Servicing all of Perth with a strong focus on North of the River suburbs. We regularly work in ${SUBURBS.join(", ")} and surrounding new-build and established residential areas.`}
+        subtitle={`Servicing all of Perth with a strong focus on North of the River suburbs. We regularly work in ${SUBURBS.join(
+          ", "
+        )} and surrounding new-build and established residential areas.`}
       >
         <div className="ctaBar">
           <div>
@@ -263,12 +291,3 @@ export default function App() {
     </div>
   );
 }
-
-/*
-MANUAL TEST CASES (quick checks)
-1) Site looks styled (not plain) — App.css is being loaded.
-2) Gallery images are not huge; they are cropped nicely.
-3) Buttons look consistent.
-4) Mobile layout: cards stack nicely.
-5) If an image is missing, it hides without breaking layout.
-*/
