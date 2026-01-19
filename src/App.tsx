@@ -55,27 +55,18 @@ function App() {
   <h2>Recent Work</h2>
   <p>Some recent landscaping projects completed north of the river.</p>
 
-<div className="gallery">
-  <img
-    src="https://jsllandscaping.com.au/work/assets/project1.jpg"
-    alt="Modern front garden with stone and cactus"
-  />
-  <img
-    src="https://jsllandscaping.com.au/work/assets/project2.jpg"
-    alt="Decking and artificial lawn"
-  />
-  <img
-    src="https://jsllandscaping.com.au/work/assets/project3.jpg"
-    alt="Side path stepping stones with turf"
-  />
-  <img
-    src="https://jsllandscaping.com.au/work/assets/project4.jpg"
-    alt="Backyard lawn and paving area"
-  />
+<div className="instagram-cta">
+  <p>Check out our Instagram for our latest work</p>
+  <a
+    href="https://www.instagram.com/jsllandscaping/"
+    target="_blank"
+    rel="noopener noreferrer"
+    className="instagram-button"
+  >
+    View Instagram
+  </a>
 </div>
 
-
-  
 </section>
 
         {/* ABOUT */}
