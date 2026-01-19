@@ -53,6 +53,18 @@ function App() {
             </div>
           </div>
         </section>
+{/* GALLERY */}
+<section className="section section-card">
+  <h2>Recent Work</h2>
+  <p>Some recent landscaping projects completed north of the river.</p>
+
+  <div className="gallery">
+    <img src={project1} alt="Modern front garden with stone and cactus" />
+    <img src={project2} alt="Decking and artificial lawn" />
+    <img src={project3} alt="Side path stepping stones with turf" />
+    <img src={project4} alt="Backyard lawn and paving area" />
+  </div>
+</section>
 
         {/* ABOUT */}
         <section id="about" className="section section-card">
