@@ -56,11 +56,12 @@ function App() {
   <p>Some recent landscaping projects completed north of the river.</p>
 
 <div className="gallery">
-  <img src="/images/project1.jpg" alt="Modern front garden with stone and cactus" />
-  <img src="/images/project2.jpg" alt="Decking and artificial lawn" />
-  <img src="/images/project3.jpg" alt="Side path stepping stones with turf" />
-  <img src="/images/project4.jpg" alt="Backyard lawn and paving area" />
+  <img src="/work/assets/project1.jpg" alt="Modern front garden with stone and cactus" />
+  <img src="/work/assets/project2.jpg" alt="Decking and artificial lawn" />
+  <img src="/work/assets/project3.jpg" alt="Side path stepping stones with turf" />
+  <img src="/work/assets/project4.jpg" alt="Backyard lawn and paving area" />
 </div>
+
 
 </section>
 
